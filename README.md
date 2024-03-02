@@ -1,10 +1,18 @@
-<h2 align="left">Welcome to my Git Profile</h2>
+<h2 align="left"></h2>
 
 ###
 
 <div align="center">
-  <img height="" src="https://i.pinimg.com/originals/e7/b8/7a/e7b87a8252bef678e1dd65e631808786.gif"  />
+  <img src="https://github-readme-stats.vercel.app/api?username=Ryalcantara&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false" height="150" alt="stats graph"  />
+  <img src="https://streak-stats.demolab.com?user=Ryalcantara&locale=en&mode=daily&theme=dracula&hide_border=false&border_radius=5" height="150" alt="streak graph"  />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=Ryalcantara&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false" height="150" alt="languages graph"  />
 </div>
+
+###
+
+<br clear="both">
+
+<img align="right" height="200" src="https://i.pinimg.com/originals/e7/b8/7a/e7b87a8252bef678e1dd65e631808786.gif"  />
 
 ###
 
@@ -49,15 +57,6 @@
 
 <div align="center">
   <img src="https://github-read-medium-git-main.pahlevikun.vercel.app/latest?limit=4" alt="Layout with last medium posts"  />
-</div>
-
-###
-
-
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Ryalcantara&hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=en&hide_border=false" height="150" alt="stats graph"  />
-  <img src="https://streak-stats.demolab.com?user=Ryalcantara&locale=en&mode=daily&theme=dracula&hide_border=false&border_radius=5" height="150" alt="streak graph"  />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=Ryalcantara&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false" height="150" alt="languages graph"  />
 </div>
 
 ###
