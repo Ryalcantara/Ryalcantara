@@ -12,7 +12,7 @@
 
 <br clear="both">
 
-<img align="right" height="200" src="https://i.pinimg.com/originals/e7/b8/7a/e7b87a8252bef678e1dd65e631808786.gif"  />
+<img align="right" height="150" src="https://i.pinimg.com/originals/e7/b8/7a/e7b87a8252bef678e1dd65e631808786.gif"  />
 
 ###
 
@@ -55,8 +55,5 @@
 
 ###
 
-<div align="center">
-  <img src="https://github-read-medium-git-main.pahlevikun.vercel.app/latest?limit=4" alt="Layout with last medium posts"  />
-</div>
 
 ###
