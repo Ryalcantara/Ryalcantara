@@ -23,9 +23,7 @@
   <pre><code style="background-color: #282828; color: #ebdbb2">stack.technologies</code></pre>
 </h2>
 
-<div align="center" style="background-color: #282828; padding: 20px; border-radius: 6px;">
-  <img src="https://skillicons.dev/icons?i=js,ts,react,nodejs,linux,bash,electron,tailwind,bootstrap&theme=dark" />
-</div>
+
 
 <h2 align="center">
   <pre><code style="background-color: #282828; color: #ebdbb2">developer.achievements</code></pre>
