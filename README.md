@@ -1,15 +1,25 @@
+<div align="center">
 
 
-<div align="left" style="display: flex">
+
+
+  
   <div>
-    
-  <img width="200" src="https://i.pinimg.com/originals/e7/b8/7a/e7b87a8252bef678e1dd65e631808786.gif"/>
+    <p>
+      <img src="https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif" width="50">
+      <span><strong>CURRENTLY FIGHTING FOR MY LIFE IN RUST</strong></span>
+      <img src="https://rustacean.net/assets/rustacean-flat-happy.svg" width="50">
+    </p>
   </div>
+  
+
+
   <div>
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=500&size=22&pause=1000&color=D79921&center=true&vCenter=true&width=435&lines=const+developer+%3D+%7B;%E2%80%8E+%E2%80%8Ecreative%3A+true%2C;%E2%80%8E+%E2%80%8Ecoding%3A+true;%7D" />
+    <img src="https://media1.tenor.com/m/YFH8r7l0IX0AAAAd/walter-white-falling.gif" width="350" />
   </div>
+
+
+
+  
+  <br/>
 </div>
-
-
-
-
