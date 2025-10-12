@@ -1,25 +1,11 @@
-<div align="center">
+# yo
 
+![vibe](https://media1.tenor.com/m/2MMjDZ0NGK0AAAAC/lain.gif)
 
+> working on random hobby projects  
+> sometimes they even work
 
+**languages & tools**  
+`python` · `javascript` · `typescript` · `react` · `node.js`
 
-  
-  <div>
-    <p>
-      <img src="https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif" width="50">
-      <span><strong>CURRENTLY FIGHTING FOR MY LIFE IN RUST</strong></span>
-      <img src="https://rustacean.net/assets/rustacean-flat-happy.svg" width="50">
-    </p>
-  </div>
-  
-
-
-  <div>
-    <img src="https://media1.tenor.com/m/YFH8r7l0IX0AAAAd/walter-white-falling.gif" width="350" />
-  </div>
-
-
-
-  
-  <br/>
-</div>
+> quiet commits, loud ideas
