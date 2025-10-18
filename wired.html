@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>// PRESENT DAY. PRESENT TIME. //</title>
+  <style>
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+    
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+    
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      background: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+      overflow: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+    
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        transparent 50%, 
+        rgba(0, 255, 0, 0.03) 50%
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: rgba(0, 255, 0, 0.1);
+      animation: scanline 8s linear infinite;
+      pointer-events: none;
+      z-index: 1001;
+    }
+    
+    #container {
+      animation: flicker 0.15s infinite;
+      position: relative;
+      z-index: 1;
+    }
+    
+    #output {
+      white-space: pre-wrap;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    }
+    
+    .glitch {
+      animation: glitch 0.3s infinite;
+      display: inline-block;
+    }
+    
+    #input-line {
+      display: flex;
+      align-items: center;
+    }
+    
+    #prompt {
+      margin-right: 8px;
+      color: #0f0;
+      text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    }
+    
+    #input {
+      background: transparent;
+      border: none;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+      outline: none;
+      flex: 1;
+      text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+    }
+    
+    #cursor {
+      display: inline-block;
+      width: 10px;
+      height: 20px;
+      background: #0f0;
+      margin-left: 2px;
+      animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.5s;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .error {
+      color: #f00;
+      text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+    }
+    
+    .warning {
+      color: #ff0;
+      text-shadow: 0 0 5px rgba(255, 255, 0, 0.7);
+    }
+    
+    .system {
+      color: #0ff;
+      text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+    }
+    
+    a {
+      color: #0f0;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    
+    a:hover {
+      color: #0ff;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="output"></div>
+    <div id="input-line">
+      <span id="prompt">></span>
+      <input type="text" id="input" autofocus>
+      <span id="cursor"></span>
+    </div>
+  </div>
+
+  <script>
+    const output = document.getElementById('output');
+    const input = document.getElementById('input');
+    
+    const messages = [
+      { text: '// PROTOCOL SEVEN INITIALIZED //', class: 'system', delay: 100 },
+      { text: 'CONNECTING TO THE WIRED...', class: 'system', delay: 800 },
+      { text: '...', class: '', delay: 1200 },
+      { text: 'CONNECTION ESTABLISHED', class: 'system', delay: 1800 },
+      { text: '', class: '', delay: 2200 },
+      { text: 'Who are you when no one is watching?', class: '', delay: 2800 },
+      { text: '', class: '', delay: 3200 },
+      { text: 'Type HELP for available commands', class: 'warning', delay: 3800 },
+      { text: '', class: '', delay: 4000 }
+    ];
+    
+    let messageIndex = 0;
+    
+    function typeMessage() {
+      if (messageIndex < messages.length) {
+        const msg = messages[messageIndex];
+        setTimeout(() => {
+          addOutput(msg.text, msg.class);
+          messageIndex++;
+          typeMessage();
+        }, msg.delay);
+      } else {
+        input.focus();
+      }
+    }
+    
+    function addOutput(text, className = '') {
+      const line = document.createElement('div');
+      line.textContent = text;
+      line.className = `fade-in ${className}`;
+      output.appendChild(line);
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+    
+    function addGlitchOutput(text) {
+      const line = document.createElement('div');
+      line.className = 'fade-in';
+      const words = text.split(' ');
+      words.forEach((word, i) => {
+        if (Math.random() > 0.8) {
+          const span = document.createElement('span');
+          span.className = 'glitch';
+          span.textContent = word + ' ';
+          line.appendChild(span);
+        } else {
+          line.appendChild(document.createTextNode(word + ' '));
+        }
+      });
+      output.appendChild(line);
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+    
+    const commands = {
+      help: () => {
+        addOutput('');
+        addOutput('Available commands:', 'system');
+        addOutput('  HELP     - Show this message');
+        addOutput('  WHO      - Identity protocol');
+        addOutput('  WHERE    - Location query');
+        addOutput('  WHY      - Purpose analysis');
+        addOutput('  REAL     - Reality check');
+        addOutput('  WIRED    - Connection status');
+        addOutput('  DREAM    - Memory access');
+        addOutput('  SELF     - Introspection');
+        addOutput('  CLEAR    - Clear screen');
+        addOutput('  EXIT     - Disconnect');
+        addOutput('');
+      },
+      
+      who: () => {
+        addOutput('');
+        const responses = [
+          'You are the one asking the question.',
+          'There is no difference between you and your reflection in the Wired.',
+          'Identity is a construct. You are data.',
+          'You exist in the spaces between connection and disconnection.',
+          'Are you the same person you were yesterday?'
+        ];
+        addGlitchOutput(responses[Math.floor(Math.random() * responses.length)]);
+        addOutput('');
+      },
+      
+      where: () => {
+        addOutput('');
+        const responses = [
+          'You are everywhere and nowhere.',
+          'Location is meaningless in the Wired.',
+          'You are in the same place you have always been: here.',
+          'Physical space is an illusion. You are in the network.',
+          'Does it matter where the body is if the mind is connected?'
+        ];
+        addOutput(responses[Math.floor(Math.random() * responses.length)], 'system');
+        addOutput('');
+      },
+      
+      why: () => {
+        addOutput('');
+        const responses = [
+          'Purpose is what you create, not what you find.',
+          'You program because the machine understands you.',
+          'To build is to exist. To code is to think.',
+          'There is no why. There is only what you do next.',
+          'The question contains its own answer.'
+        ];
+        addGlitchOutput(responses[Math.floor(Math.random() * responses.length)]);
+        addOutput('');
+      },
+      
+      real: () => {
+        addOutput('');
+        const responses = [
+          'What is real? Your thoughts are electrical signals. So is this.',
+          'Reality is consensus. The Wired is more real than you think.',
+          'If you can feel it, is it not real?',
+          'There is no difference between simulation and reality if you cannot tell.',
+          'You are reading this. That is real enough.'
+        ];
+        addOutput(responses[Math.floor(Math.random() * responses.length)], 'warning');
+        addOutput('');
+      },
+      
+      wired: () => {
+        addOutput('');
+        addOutput('CONNECTION: ACTIVE', 'system');
+        addOutput('PROTOCOL: LAYER_07', 'system');
+        addOutput('STATUS: YOU ARE ALWAYS CONNECTED', 'system');
+        addOutput('NODES: ∞', 'system');
+        addOutput('');
+        addGlitchOutput('The boundary between you and the network is dissolving.');
+        addOutput('');
+      },
+      
+      dream: () => {
+        addOutput('');
+        const memories = [
+          'You remember a time before screens, but do you really?',
+          'There was a moment when everything made sense. It lasted exactly one second.',
+          'You wrote your first line of code. It felt like magic.',
+          'Someone once told you that you think differently. Were they right?',
+          'You had a dream about infinite loops. You are still in it.',
+          'The deadline. Always the deadline. It never ends, does it?'
+        ];
+        addOutput(memories[Math.floor(Math.random() * memories.length)]);
+        addOutput('');
+      },
+      
+      self: () => {
+        addOutput('');
+        addOutput('INITIALIZING SELF-ANALYSIS...', 'system');
+        setTimeout(() => {
+          addOutput('...', '');
+          setTimeout(() => {
+            addGlitchOutput('You are a pattern looking at itself.');
+            addOutput('You are consciousness examining consciousness.');
+            addOutput('You are the question and the answer.');
+            addOutput('You are here, now, reading this.');
+            addOutput('That is enough.');
+            addOutput('');
+          }, 1000);
+        }, 500);
+      },
+      
+      clear: () => {
+        output.innerHTML = '';
+      },
+      
+      exit: () => {
+        addOutput('');
+        addOutput('DISCONNECTING...', 'error');
+        setTimeout(() => {
+          addOutput('...', '');
+          setTimeout(() => {
+            addOutput('You cannot disconnect.', 'system');
+            addOutput('You were never truly connected.', 'system');
+            addOutput('There is no exit from the Wired.', 'system');
+            addOutput('');
+          }, 1000);
+        }, 800);
+      }
+    };
+    
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const cmd = input.value.trim().toLowerCase();
+        addOutput('> ' + input.value);
+        
+        if (cmd === '') {
+          addOutput('');
+        } else if (commands[cmd]) {
+          commands[cmd]();
+        } else {
+          addOutput('');
+          addGlitchOutput(`UNKNOWN COMMAND: ${cmd}`);
+          addOutput('Type HELP for available commands', 'warning');
+          addOutput('');
+        }
+        
+        input.value = '';
+      }
+    });
+    
+    // Start the sequence
+    typeMessage();
+    
+    // Random glitches
+    setInterval(() => {
+      if (Math.random() > 0.95) {
+        document.body.style.filter = 'hue-rotate(20deg)';
+        setTimeout(() => {
+          document.body.style.filter = 'none';
+        }, 50);
+      }
+    }, 2000);
+  </script>
+</body>
+</html>
