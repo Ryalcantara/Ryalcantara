@@ -6,6 +6,6 @@
 > sometimes they even work
 
 **languages & tools**  
-`python` · `javascript` · `typescript` · `react` · `node.js`
+`python` ·  `typescript` · `react` · `bun`
 
 > quiet commits, loud ideas
