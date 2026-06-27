@@ -1,11 +1,4 @@
-# yo
+# How can one be articulate on ones readmes
 
-![vibe](https://media1.tenor.com/m/2MMjDZ0NGK0AAAAC/lain.gif)
+![radiation](https://media1.tenor.com/m/AtAW1M7pHggAAAAd/lain-experiments.gif)
 
-> working on random hobby projects  
-> sometimes they even work
-
-**languages & tools**  
-`python` ·  `typescript` · `react` · `bun`
-
-> quiet commits, loud ideas
